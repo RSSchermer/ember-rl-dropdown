@@ -1,6 +1,6 @@
 # Ember-rl-dropdown
 
-Simple dropdown component and mixin for Ember. While it is very straight forward to create toggle functionality in
+Simple dropdown component and mixin for Ember. While it is very straightforward to create toggle functionality in
 Ember with the if-helper, this dropdown will also close on click-out.
 
 ## Installation
@@ -32,7 +32,7 @@ This addon does not provide any css for the dropdown, but it should work well wi
 
 The component tagnames and classes can be altered to work with your favorite framework or your own custom css.
 `closeOnChildClick` may be set to a jQuery selector for child elements that should case the dropdown to close when
-clicked. The default behaviour is for the dropdown to remain visible when the user interacts with its child elements.
+clicked. The default behavior is for the dropdown to remain visible when the user interacts with its child elements.
 Set it to `true` if any child element should close the dropdown.
 
 When integrating dropdown functionality in your own components, you may prefer to use the mixin instead of using the
