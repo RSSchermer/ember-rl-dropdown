@@ -1,0 +1,23 @@
+<h1>Ember-rl-dropdown demo</h2>
+
+<p>Documenation for this component is available <a href="https://github.com/RSSchermer/Ember-rl-dropdown">here</a>.</p>
+
+<p>The source for this demo is available
+  <a href="https://github.com/RSSchermer/Ember-rl-dropdown/tree/gh-pages/demo-app">here</a>.
+</p>
+
+<p>This demo uses Twitter Bootstrap. The <a href="https://github.com/RSSchermer/Ember-rl-dropdown#usage">usage section</a>
+  in the documentation provides an example.
+</p>
+
+{{#rl-dropdown-container class="dropdown"}}
+  {{#rl-dropdown-toggle class="btn btn-default"}}
+    Toggle <span class="caret"></span>
+  {{/rl-dropdown-toggle}}
+
+  {{#rl-dropdown tagName="ul" class="dropdown-menu" closeOnChildClick="a:link"}}
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 1</a></li>
+  {{/rl-dropdown}}
+{{/rl-dropdown-container}}
