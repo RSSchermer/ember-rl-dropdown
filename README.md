@@ -1,25 +1,67 @@
 # Ember-rl-dropdown
 
-This README outlines the details of collaborating on this Ember addon.
+Simple dropdown component and mixin for Ember. While it is very straight forward to create toggle functionality in
+Ember with the if-helper, a proper dropdown should also close on click-out.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```bash
+npm install --save-dev ember-rl-dropdown
+```
 
-## Running
+This addon does not provide any css for the dropdown, but it should work well with frameworks such as Twitter Bootstrap
+(see example below).
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+## Usage
 
-## Running Tests
+```handlebars
+<!-- Twitter Bootstrap dropdown menu example -->
 
-* `ember test`
-* `ember test --server`
+{{#rl-dropdown-container class="dropdown"}}
+  {{#rl-dropdown-toggle class="btn btn-default"}}
+    Toggle <span class="caret"></span>
+  {{/rl-dropdown-toggle}}
 
-## Building
+  {{#rl-dropdown tagName="ul" class="dropdown-menu" closeOnChildClick="a:link"}}
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 1</a></li>
+  {{/rl-dropdown}}
+{{/rl-dropdown-container}}
+```
 
-* `ember build`
+The component tagnames and classes can be altered to work with your favorite framework or your own custom css.
+`closeOnChildClick` may be set to a jQuery selector for child elements that should case the dropdown to close when
+clicked. The default behaviour is for the dropdown to remain visible when the user interacts with its child elements.
+Set it to `true` if any child element should close the dropdown.
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+When integrating dropdown functionality in your own components, you may prefer to use the mixin instead of using the
+dropdown components. Make sure to add the `rl-dropdown-toggle` class to your dropdown toggle element, and to add the
+`rl-dropdown` class to your dropdown element. You can send `toggleDropdown`, `closeDropdown` and `openDropdown` events
+to toggle, close or open the dropdown.
+
+
+```javascript
+// app/components/user-controls.js
+import Ember from 'ember';
+import DropdownComponentMixin from 'ember-rl-dropdown/mixins/rl-dropdown-component';
+
+export default Ember.Component.extend(DropdownComponentMixin, {
+  // Some additional custom behaviour
+});
+```
+
+```handlebars
+<!-- app/templates/components/user-controls.hbs -->
+
+<!-- Make sure to add the rl-dropdown-toggle class to your dropdown toggle element -->
+<button class="rl-dropdown-toggle" {{action "toggleDropdown"}}>User controls</button>
+
+{{#if dropdownExpanded}}
+  <!-- Make sure to add the rl-dropdown class to your dropdown element -->
+  <div class="user-controls-dropdown rl-dropdown">
+    ...
+    <a class="close-btn" {{action "closeDropdown"}}>Close</a>
+  </div>
+{{/if}}
+```
