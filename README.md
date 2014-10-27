@@ -3,6 +3,10 @@
 Simple dropdown component and mixin for Ember. While it is very straightforward to create toggle functionality in
 Ember with the if-helper, this dropdown will also close on click-out.
 
+## Demo
+
+Demo available [here](http://rsschermer.github.io/ember-rl-dropdown/).
+
 ## Installation
 
 ```bash
