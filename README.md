@@ -1,7 +1,7 @@
 # Ember-rl-dropdown
 
 Simple dropdown component and mixin for Ember. While it is very straight forward to create toggle functionality in
-Ember with the if-helper, a proper dropdown should also close on click-out.
+Ember with the if-helper, this dropdown will also close on click-out.
 
 ## Installation
 
@@ -54,11 +54,11 @@ export default Ember.Component.extend(DropdownComponentMixin, {
 ```handlebars
 <!-- app/templates/components/user-controls.hbs -->
 
-<!-- Make sure to add the rl-dropdown-toggle class to your dropdown toggle element -->
+<!-- Be sure to add the rl-dropdown-toggle class to your dropdown toggle element -->
 <button class="rl-dropdown-toggle" {{action "toggleDropdown"}}>User controls</button>
 
 {{#if dropdownExpanded}}
-  <!-- Make sure to add the rl-dropdown class to your dropdown element -->
+  <!-- Be sure to add the rl-dropdown class to your dropdown element -->
   <div class="user-controls-dropdown rl-dropdown">
     ...
     <a class="close-btn" {{action "closeDropdown"}}>Close</a>
