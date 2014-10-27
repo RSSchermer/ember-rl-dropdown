@@ -31,12 +31,12 @@ This addon does not provide any css for the dropdown, but it should work well wi
 ```
 
 The component tagnames and classes can be altered to work with your favorite framework or your own custom css.
-`closeOnChildClick` may be set to a jQuery selector for child elements that should case the dropdown to close when
+`closeOnChildClick` may be set to a jQuery selector for child elements that should cause the dropdown to close when
 clicked. The default behavior is for the dropdown to remain visible when the user interacts with its child elements.
 Set it to `true` if any child element should close the dropdown.
 
 When integrating dropdown functionality in your own components, you may prefer to use the mixin instead of using the
-dropdown components. Make sure to add the `rl-dropdown-toggle` class to your dropdown toggle element, and to add the
+dropdown components. Be sure to add the `rl-dropdown-toggle` class to your dropdown toggle element, and to add the
 `rl-dropdown` class to your dropdown element. You can send `toggleDropdown`, `closeDropdown` and `openDropdown` events
 to toggle, close or open the dropdown.
 
