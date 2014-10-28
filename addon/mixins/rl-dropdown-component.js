@@ -23,14 +23,14 @@ export default Ember.Mixin.create({
 
   manageClickoutEvent: function () {
     if (this.get('dropdownExpanded')) {
-      Ember.$(document).bind('click', {component: this}, this.clickoutHandler);
+      Ember.$(document).bind('click.'+ this.toString(), {component: this}, this.clickoutHandler);
     } else {
-      Ember.$(document).unbind('click', this.clickoutHandler);
+      Ember.$(document).unbind('click.'+ this.toString(), this.clickoutHandler);
     }
   }.observes('dropdownExpanded').on('didInsertElement'),
 
   unbindClickoutEvent: function () {
-    Ember.$(document).unbind('click', this.clickoutHandler);
+    Ember.$(document).unbind('click.'+ this.toString(), this.clickoutHandler);
   }.on('willDestroyElement'),
 
   clickoutHandler: function (event) {

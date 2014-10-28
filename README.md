@@ -3,6 +3,8 @@
 Simple dropdown component and mixin for Ember. While it is very straightforward to create toggle functionality in
 Ember with the if-helper, this dropdown will also close on click-out.
 
+[![Build Status](https://travis-ci.org/RSSchermer/ember-rl-dropdown.svg?branch=master)](https://travis-ci.org/RSSchermer/ember-rl-dropdown)
+
 ## Demo
 
 Demo available [here](http://rsschermer.github.io/ember-rl-dropdown/).
@@ -28,8 +30,8 @@ This addon does not provide any css for the dropdown, but it should work well wi
 
   {{#rl-dropdown tagName="ul" class="dropdown-menu" closeOnChildClick="a:link"}}
     <li><a href="#">Link 1</a></li>
-    <li><a href="#">Link 1</a></li>
-    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
   {{/rl-dropdown}}
 {{/rl-dropdown-container}}
 ```
