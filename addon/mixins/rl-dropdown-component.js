@@ -7,6 +7,8 @@ export default Ember.Mixin.create({
 
   dropdownSelector: '.rl-dropdown',
 
+  clickOutEventNamespace: 'rl-dropdown',
+  
   actions: {
     toggleDropdown: function () {
       this.toggleProperty('dropdownExpanded');
@@ -22,15 +24,17 @@ export default Ember.Mixin.create({
   },
 
   manageClickoutEvent: function () {
+    var eventName = 'click.'+ this.get('clickOutEventNamespace');
+
     if (this.get('dropdownExpanded')) {
-      Ember.$(document).bind('click.'+ this.toString(), {component: this}, this.clickoutHandler);
+      Ember.$(document).bind(eventName, {component: this}, this.clickoutHandler);
     } else {
-      Ember.$(document).unbind('click.'+ this.toString(), this.clickoutHandler);
+      Ember.$(document).unbind(eventName, this.clickoutHandler);
     }
   }.observes('dropdownExpanded').on('didInsertElement'),
 
   unbindClickoutEvent: function () {
-    Ember.$(document).unbind('click.'+ this.toString(), this.clickoutHandler);
+    Ember.$(document).unbind('click.'+ this.get('clickOutEventNamespace'), this.clickoutHandler);
   }.on('willDestroyElement'),
 
   clickoutHandler: function (event) {
