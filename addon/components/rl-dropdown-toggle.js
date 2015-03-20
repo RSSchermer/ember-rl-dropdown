@@ -5,6 +5,10 @@ export default Ember.Component.extend({
 
   tagName: 'button',
 
+  attributeBindings: ['type'],
+
+  type: 'button',
+
   targetObject: function () {
     return this.get('parentView');
   }.property('parentView'),
