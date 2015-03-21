@@ -7,7 +7,9 @@ export default Ember.Component.extend({
 
   attributeBindings: ['type'],
 
-  type: 'button',
+  type: function () {
+    return this.get('tagName') === 'button' ? 'button' : null;
+  }.property('tagName'),
 
   targetObject: function () {
     return this.get('parentView');
