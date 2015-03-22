@@ -5,47 +5,47 @@ import Ember from 'ember';
 var App;
 
 moduleForComponent('rl-dropdown', 'RlDropdownComponent', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
   },
 
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
   }
 });
 
-test('is not displayed when isExpanded is not true', function () {
+test('is not displayed when isExpanded is not true', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
-  equal($component.css('display'), 'none');
+  assert.equal($component.css('display'), 'none');
 });
 
-test('is displayed when isExpanded is true', function () {
+test('is displayed when isExpanded is true', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
   component.set('isExpanded', true);
 
-  equal($component.css('display'), 'block');
+  assert.equal($component.css('display'), 'block');
 });
 
-test('does not close when clicked on', function () {
+test('does not close when clicked on', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
   component.set('isExpanded', true);
 
   $component.click();
 
   Ember.run(function () {
-    equal($component.css('display'), 'block');
+    assert.equal($component.css('display'), 'block');
   });
 });
 
-test('does not close when clicking on a child element when closeOnChildClick is not true', function () {
+test('does not close when clicking on a child element when closeOnChildClick is not true', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
   component.set('isExpanded', true);
 
@@ -54,13 +54,13 @@ test('does not close when clicking on a child element when closeOnChildClick is 
   $component.find('a').click();
 
   Ember.run(function () {
-    equal($component.css('display'), 'block');
+    assert.equal($component.css('display'), 'block');
   });
 });
 
-test('does close when clicking on a child element when closeOnChildClick is true', function () {
+test('does close when clicking on a child element when closeOnChildClick is true', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
   component.setProperties({ 'isExpanded': true, 'closeOnChildClick': true });
   $component.append('<a href="#">Link</a>').click();
@@ -68,13 +68,13 @@ test('does close when clicking on a child element when closeOnChildClick is true
   $component.find('a').click();
 
   Ember.run(function () {
-    equal($component.css('display'), 'none');
+    assert.equal($component.css('display'), 'none');
   });
 });
 
-test('does not close when clicking on a child element when closeOnChildClick selector is not matched', function () {
+test('does not close when clicking on a child element when closeOnChildClick selector is not matched', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
   component.setProperties({ 'isExpanded': true, 'closeOnChildClick': 'a:link' });
   $component.append('<a>Link</a>').click();
@@ -82,13 +82,13 @@ test('does not close when clicking on a child element when closeOnChildClick sel
   $component.find('a').click();
 
   Ember.run(function () {
-    equal($component.css('display'), 'block');
+    assert.equal($component.css('display'), 'block');
   });
 });
 
-test('does close when clicking on a child element when closeOnChildClick selector is matched', function () {
+test('does close when clicking on a child element when closeOnChildClick selector is matched', function (assert) {
   var component = this.subject();
-  var $component = this.append();
+  var $component = this.render();
 
   component.setProperties({ 'isExpanded': true, 'closeOnChildClick': 'a:link' });
   $component.append('<a href="#">Link</a>').click();
@@ -96,6 +96,6 @@ test('does close when clicking on a child element when closeOnChildClick selecto
   $component.find('a').click();
 
   Ember.run(function () {
-    equal($component.css('display'), 'none');
+    assert.equal($component.css('display'), 'none');
   });
 });

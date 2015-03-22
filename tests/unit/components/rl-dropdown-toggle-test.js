@@ -5,21 +5,22 @@ import Ember from 'ember';
 var App;
 
 moduleForComponent('rl-dropdown-toggle', 'RlDropdownToggleComponent', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
   },
 
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
   }
 });
 
-test('sends the toggleDropdown action when clicked', function () {
+test('sends the toggleDropdown action when clicked', function (assert) {
   var component = this.subject();
+  var $component = this.render();
 
   var targetObject = {
     toggleDropdown: function(){
-      ok(true, 'external Action was called!');
+      assert.ok(true, 'external Action was called!');
     }
   };
 
@@ -28,6 +29,6 @@ test('sends the toggleDropdown action when clicked', function () {
   });
 
   Ember.run(function(){
-    component.send('click');
+    $component.click();
   });
 });
