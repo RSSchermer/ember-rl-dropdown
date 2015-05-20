@@ -36,20 +36,22 @@ test('the dropdown should not be visible after clicking the toggle button twice'
   visit('/dropdown-test');
 
   Ember.$('.rl-dropdown-toggle').click();
-  Ember.$('.rl-dropdown-toggle').click();
 
-  Ember.run(function () {
+  Ember.run.later(function() {
+    Ember.$('.rl-dropdown-toggle').click();
+
     assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
-  });
+  }, 2);
 });
 
 test('the dropdown should not be visible after clicking the toggle and then clicking outside', function (assert) {
   visit('/dropdown-test');
 
   Ember.$('.rl-dropdown-toggle').click();
-  Ember.$('body').click();
 
-  Ember.run(function () {
+  Ember.run.later(function () {
+    Ember.$('body').click();
+
     assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
-  });
+  }, 2);
 });

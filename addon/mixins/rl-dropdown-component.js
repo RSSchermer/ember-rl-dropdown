@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
   dropdownSelector: '.rl-dropdown',
 
   clickOutEventNamespace: 'rl-dropdown',
-  
+
   actions: {
     toggleDropdown: function () {
       this.toggleProperty('dropdownExpanded');
@@ -25,11 +25,18 @@ export default Ember.Mixin.create({
 
   manageClickoutEvent: function () {
     var eventName = 'click.'+ this.get('clickOutEventNamespace');
-
+    var component = this;
+    
     if (this.get('dropdownExpanded')) {
-      Ember.$(document).bind(eventName, {component: this}, this.clickoutHandler);
+
+      /* Add clickout handler with 1ms delay, to allow opening the dropdown
+       * by clicking e.g. a checkbox and binding to dropdownExpanded, without
+       * having the handler close the dropdown immediately. */
+      Ember.run.later(function() {
+        Ember.$(document).bind(eventName, {component: component}, component.clickoutHandler);
+      }, 1);
     } else {
-      Ember.$(document).unbind(eventName, this.clickoutHandler);
+      Ember.$(document).unbind(eventName, component.clickoutHandler);
     }
   }.observes('dropdownExpanded').on('didInsertElement'),
 
