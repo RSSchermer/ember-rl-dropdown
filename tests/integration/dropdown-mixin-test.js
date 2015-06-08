@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 var App;
 
-module('Dropdown integration Tests', {
+module('Dropdown mixin integration Tests', {
   beforeEach: function() {
     App = startApp();
   },
@@ -26,9 +26,9 @@ test('the dropdown should be visible after clicking the checkbox', function (ass
   visit('/dropdown-mixin-test');
 
   Ember.run(function () {
-    Ember.$('#dropdownCheckbox').click();
+    click('#dropdownCheckbox');
 
-    andThen(function() {
+    andThen(function () {
       assert.equal(Ember.$('.user-controls-dropdown').length, 1);
     });
   });

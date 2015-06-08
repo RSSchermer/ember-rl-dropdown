@@ -16,14 +16,14 @@ moduleForComponent('rl-dropdown', 'RlDropdownComponent', {
 
 test('is not displayed when isExpanded is not true', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   assert.equal($component.css('display'), 'none');
 });
 
 test('is displayed when isExpanded is true', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   component.set('isExpanded', true);
 
@@ -32,7 +32,7 @@ test('is displayed when isExpanded is true', function (assert) {
 
 test('does not close when clicked on', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   component.set('isExpanded', true);
 
@@ -45,7 +45,7 @@ test('does not close when clicked on', function (assert) {
 
 test('does not close when clicking on a child element when closeOnChildClick is not true', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   component.set('isExpanded', true);
 
@@ -60,7 +60,7 @@ test('does not close when clicking on a child element when closeOnChildClick is 
 
 test('does close when clicking on a child element when closeOnChildClick is true', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   component.setProperties({ 'isExpanded': true, 'closeOnChildClick': true });
   $component.append('<a href="#">Link</a>').click();
@@ -74,7 +74,7 @@ test('does close when clicking on a child element when closeOnChildClick is true
 
 test('does not close when clicking on a child element when closeOnChildClick selector is not matched', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   component.setProperties({ 'isExpanded': true, 'closeOnChildClick': 'a:link' });
   $component.append('<a>Link</a>').click();
@@ -88,7 +88,7 @@ test('does not close when clicking on a child element when closeOnChildClick sel
 
 test('does close when clicking on a child element when closeOnChildClick selector is matched', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   component.setProperties({ 'isExpanded': true, 'closeOnChildClick': 'a:link' });
   $component.append('<a href="#">Link</a>').click();

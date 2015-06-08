@@ -25,7 +25,7 @@ export default Ember.Mixin.create({
     }
   },
 
-  manageClosingEvents: function () {
+  manageClosingEvents: Ember.on('didInsertElement', Ember.observer('dropdownExpanded', function () {
     var namespace = this.get('closingEventNamespace');
     var clickEventName = 'click.'+ namespace;
     var escapeEventName = 'keydown.'+ namespace;
@@ -47,14 +47,14 @@ export default Ember.Mixin.create({
       Ember.$(document).unbind(clickEventName, component.clickoutHandler);
       Ember.$(document).unbind(escapeEventName, component.escapeHandler);
     }
-  }.observes('dropdownExpanded').on('didInsertElement'),
+  })),
 
-  unbindClosingEvents: function () {
+  unbindClosingEvents: Ember.on('willDestroyElement', function () {
     var namespace = this.get('closingEventNamespace');
 
     Ember.$(document).unbind('click.'+ namespace, this.clickoutHandler);
     Ember.$(document).unbind('keydown.'+ namespace, this.escapeHandler);
-  }.on('willDestroyElement'),
+  }),
 
   clickoutHandler: function (event) {
     var component = event.data.component;

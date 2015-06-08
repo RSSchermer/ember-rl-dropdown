@@ -16,7 +16,7 @@ moduleForComponent('rl-dropdown-toggle', 'RlDropdownToggleComponent', {
 
 test('sends the toggleDropdown action when clicked', function (assert) {
   var component = this.subject();
-  var $component = this.render();
+  var $component = this.$();
 
   var targetObject = {
     toggleDropdown: function(){

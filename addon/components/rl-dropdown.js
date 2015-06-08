@@ -7,13 +7,13 @@ export default Ember.Component.extend({
 
   closeOnChildClick: false,
 
-  manageVisibility: function () {
+  manageVisibility: Ember.on('didInsertElement', Ember.observer('isExpanded', function () {
     if (this.get('isExpanded')) {
       this.$().css('display', 'block');
     } else {
       this.$().css('display', 'none');
     }
-  }.observes('isExpanded').on('didInsertElement'),
+  })),
 
   click: function (event) {
     var closeOnChildClick = this.get('closeOnChildClick');

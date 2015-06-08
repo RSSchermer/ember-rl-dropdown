@@ -7,13 +7,11 @@ export default Ember.Component.extend({
 
   attributeBindings: ['type'],
 
-  type: function () {
+  type: Ember.computed('tagName', function () {
     return this.get('tagName') === 'button' ? 'button' : null;
-  }.property('tagName'),
+  }),
 
-  targetObject: function () {
-    return this.get('parentView');
-  }.property('parentView'),
+  targetObject: Ember.computed.alias('parentView'),
 
   action: 'toggleDropdown',
 

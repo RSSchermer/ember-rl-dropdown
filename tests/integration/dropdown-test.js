@@ -17,7 +17,7 @@ module('Dropdown integration Tests', {
 test('the dropdown should not be visible initialy', function (assert) {
   visit('/dropdown-test');
 
-  Ember.run(function () {
+  andThen(function () {
     assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
   });
 });
@@ -25,9 +25,9 @@ test('the dropdown should not be visible initialy', function (assert) {
 test('the dropdown should be visible after clicking the toggle button', function (assert) {
   visit('/dropdown-test');
 
-  Ember.$('.rl-dropdown-toggle').click();
+  click('.rl-dropdown-toggle');
 
-  Ember.run(function () {
+  andThen(function () {
     assert.equal(Ember.$('.rl-dropdown').css('display'), 'block');
   });
 });
@@ -35,37 +35,47 @@ test('the dropdown should be visible after clicking the toggle button', function
 test('the dropdown should not be visible after clicking the toggle button twice', function (assert) {
   visit('/dropdown-test');
 
-  Ember.$('.rl-dropdown-toggle').click();
+  click('.rl-dropdown-toggle');
 
-  Ember.run.later(function() {
-    Ember.$('.rl-dropdown-toggle').click();
+  andThen(function () {
+    Ember.run.later(function() {
+      click('.rl-dropdown-toggle');
 
-    assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
-  }, 2);
+      andThen(function () {
+        assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
+      });
+    }, 2);
+  });
 });
 
 test('the dropdown should not be visible after clicking the toggle and then clicking outside', function (assert) {
   visit('/dropdown-test');
 
-  Ember.$('.rl-dropdown-toggle').click();
+  click('.rl-dropdown-toggle');
 
-  Ember.run.later(function () {
-    Ember.$('body').click();
+  andThen(function () {
+    Ember.run.later(function () {
+      click('#someOtherElement');
 
-    assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
-  }, 2);
+      andThen(function () {
+        assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
+      });
+    }, 2);
+  });
 });
 
 test('the dropdown should not be visible after clicking the toggle and then pressing Escape', function (assert) {
   visit('/dropdown-test');
 
-  Ember.$('.rl-dropdown-toggle').click();
+  click('.rl-dropdown-toggle');
 
-  Ember.run.later(function () {
-    keyEvent(document, "keydown", 27);
+  andThen(function () {
+    Ember.run.later(function () {
+      keyEvent(document, "keydown", 27);
 
-    andThen(function () {
-      assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
-    });
-  }, 2);
+      andThen(function () {
+        assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
+      });
+    }, 2);
+  });
 });
