@@ -55,3 +55,17 @@ test('the dropdown should not be visible after clicking the toggle and then clic
     assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
   }, 2);
 });
+
+test('the dropdown should not be visible after clicking the toggle and then pressing Escape', function (assert) {
+  visit('/dropdown-test');
+
+  Ember.$('.rl-dropdown-toggle').click();
+
+  Ember.run.later(function () {
+    keyEvent(document, "keydown", 27);
+
+    andThen(function () {
+      assert.equal(Ember.$('.rl-dropdown').css('display'), 'none');
+    });
+  }, 2);
+});

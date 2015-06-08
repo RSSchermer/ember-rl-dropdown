@@ -1,7 +1,7 @@
 # Ember-rl-dropdown
 
 Simple dropdown component and mixin for Ember. While it is very straightforward to create toggle functionality in
-Ember with the if-helper, this dropdown will also close on click-out.
+Ember with the if-helper, this dropdown will also close on click-out or when pressing the Escape key.
 
 [![Build Status](https://travis-ci.org/RSSchermer/ember-rl-dropdown.svg?branch=master)](https://travis-ci.org/RSSchermer/ember-rl-dropdown)
 
