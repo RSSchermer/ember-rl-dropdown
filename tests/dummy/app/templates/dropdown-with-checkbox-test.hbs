@@ -1,0 +1,18 @@
+{{#rl-dropdown-container}}
+  {{#rl-dropdown-toggle}}
+    Toggle
+  {{/rl-dropdown-toggle}}
+
+  {{#rl-dropdown closeOnChildClick="a:link"}}
+    {{input id="checkbox_in_dropdown" type="checkbox" checked=checkedCheckbox}}
+  {{/rl-dropdown}}
+
+{{/rl-dropdown-container}}
+
+<div id="checkbox_checked_text">
+  {{#if checkedCheckbox}}
+    Checkbox is checked
+  {{else}}
+    Checkbox is not checked
+  {{/if}}
+</div>
