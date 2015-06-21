@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('dropdownTest', { path: '/dropdown-test' });
   this.route('dropdownMixinTest', { path: '/dropdown-mixin-test' });
+  this.route('dropdownWithCheckboxTest', { path: '/dropdown-with-checkbox-test' });
 });
 
 export default Router;

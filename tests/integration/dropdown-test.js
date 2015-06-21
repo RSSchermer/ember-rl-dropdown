@@ -79,3 +79,38 @@ test('the dropdown should not be visible after clicking the toggle and then pres
     }, 2);
   });
 });
+
+test('a checkbox inside the dropdown should get check when it is clicked', function (assert) {
+  visit('/dropdown-with-checkbox-test');
+
+  click('.rl-dropdown-toggle');
+
+  andThen(function () {
+    Ember.run.later(function () {
+      click('#checkbox_in_dropdown');
+
+      andThen(function () {
+        assert.equal(Ember.$('#checkbox_checked_text').text().trim(), 'Checkbox is checked');
+      });
+
+      click('#checkbox_in_dropdown');
+    }, 2);
+  });
+});
+
+test('a checkbox inside the dropdown should get check and uncheck when it is clicked twice', function (assert) {
+  visit('/dropdown-with-checkbox-test');
+
+  click('.rl-dropdown-toggle');
+
+  andThen(function () {
+    Ember.run.later(function () {
+      click('#checkbox_in_dropdown');
+      click('#checkbox_in_dropdown');
+
+      andThen(function () {
+        assert.equal(Ember.$('#checkbox_checked_text').text().trim(), 'Checkbox is not checked');
+      });
+    }, 2);
+  });
+});

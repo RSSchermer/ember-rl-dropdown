@@ -27,6 +27,7 @@ export default Ember.Component.extend({
         this.set('isExpanded', false);
       }
     }
-    return false;
+
+    event.stopPropagation();
   }
 });
