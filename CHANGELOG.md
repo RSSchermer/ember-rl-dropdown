@@ -1,5 +1,9 @@
 # Ember-rl-dropdown change log
 
+## 0.4.0
+
+Dropdowns should now close on touch-start on mobile.
+
 ## 0.3.0
 
 Dropdowns should now close when pressing the Escape key. This can be disabled by setting `closeOnEscape` to `false`.
