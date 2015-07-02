@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
+  init: function () {
+    this._super.apply(this, arguments);
+
+    this.set('boundClickoutHandler', Ember.run.bind(this, this.clickoutHandler));
+    this.set('boundEscapeHandler', Ember.run.bind(this, this.escapeHandler));
+  },
+
   dropdownExpanded: false,
 
   dropdownToggleSelector: '.rl-dropdown-toggle',
@@ -38,26 +45,26 @@ export default Ember.Mixin.create({
        * by clicking e.g. a checkbox and binding to dropdownExpanded, without
        * having the handler close the dropdown immediately. */
       Ember.run.later(function() {
-        Ember.$(document).bind(clickEventName, {component: component}, component.clickoutHandler);
-        Ember.$(document).bind(touchEventName, {component: component}, component.clickoutHandler);
+        Ember.$(document).bind(clickEventName, {component: component}, component.boundClickoutHandler);
+        Ember.$(document).bind(touchEventName, {component: component}, component.boundClickoutHandler);
       }, 1);
 
       if (this.get('closeOnEscape')) {
-        Ember.$(document).bind(escapeEventName, {component: component}, component.escapeHandler);
+        Ember.$(document).bind(escapeEventName, {component: component}, component.boundEscapeHandler);
       }
     } else {
-      Ember.$(document).unbind(clickEventName, component.clickoutHandler);
-      Ember.$(document).unbind(touchEventName, component.clickoutHandler);
-      Ember.$(document).unbind(escapeEventName, component.escapeHandler);
+      Ember.$(document).unbind(clickEventName, component.boundClickoutHandler);
+      Ember.$(document).unbind(touchEventName, component.boundClickoutHandler);
+      Ember.$(document).unbind(escapeEventName, component.boundEscapeHandler);
     }
   })),
 
   unbindClosingEvents: Ember.on('willDestroyElement', function () {
     var namespace = this.get('closingEventNamespace');
 
-    Ember.$(document).unbind('click.'+ namespace, this.clickoutHandler);
-    Ember.$(document).unbind('touchstart.'+ namespace, this.clickoutHandler);
-    Ember.$(document).unbind('keydown.'+ namespace, this.escapeHandler);
+    Ember.$(document).unbind('click.'+ namespace, this.boundClickoutHandler);
+    Ember.$(document).unbind('touchstart.'+ namespace, this.boundClickoutHandler);
+    Ember.$(document).unbind('keydown.'+ namespace, this.boundEscapeHandler);
   }),
 
   clickoutHandler: function (event) {
