@@ -7,6 +7,8 @@ export default Ember.Component.extend({
 
   closeOnChildClick: false,
 
+  propagateClicks: true,
+
   manageVisibility: Ember.on('didInsertElement', Ember.observer('isExpanded', function () {
     if (this.get('isExpanded')) {
       this.$().css('display', 'block');
@@ -17,6 +19,7 @@ export default Ember.Component.extend({
 
   click: function (event) {
     var closeOnChildClick = this.get('closeOnChildClick');
+    var propagateClicks = this.get('propagateClicks');
     var $target = Ember.$(event.target);
     var $c = this.$();
 
@@ -28,6 +31,8 @@ export default Ember.Component.extend({
       }
     }
 
-    event.stopPropagation();
+    if (propagateClicks === true || propagateClicks === "true") {
+      event.stopPropagation();
+    }
   }
 });

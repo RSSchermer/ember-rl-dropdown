@@ -15,8 +15,15 @@ export default Ember.Component.extend({
 
   action: 'toggleDropdown',
 
+  propagateClicks: true,
+
   click: function (event) {
+    var propagateClicks = this.get('propagateClicks');
+
     this.sendAction();
-    event.stopPropagation();
+
+    if (propagateClicks === true || propagateClicks === "true") {
+      event.stopPropagation();
+    }
   }
 });
