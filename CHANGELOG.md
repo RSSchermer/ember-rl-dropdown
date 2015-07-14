@@ -1,5 +1,11 @@
 # Ember-rl-dropdown change log
 
+## 0.5.0
+
+Previously click propagation on the `rl-dropdown-toggle` and `rl-dropdown` components was prevented by default. As of
+this version they are not prevented by default. The `propagateClicks` attribute must now be set to `false` on either or
+both of these components if you wish to prevent click event propagation on either or both.
+
 ## 0.4.0
 
 Dropdowns should now close on touch-start on mobile.
