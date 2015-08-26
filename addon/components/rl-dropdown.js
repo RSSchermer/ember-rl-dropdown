@@ -31,7 +31,7 @@ export default Ember.Component.extend({
       }
     }
 
-    if (propagateClicks === true || propagateClicks === "true") {
+    if (propagateClicks === false || propagateClicks === "false") {
       event.stopPropagation();
     }
   }

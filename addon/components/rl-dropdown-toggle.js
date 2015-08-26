@@ -22,7 +22,7 @@ export default Ember.Component.extend({
 
     this.sendAction();
 
-    if (propagateClicks === true || propagateClicks === "true") {
+    if (propagateClicks === false || propagateClicks === "false") {
       event.stopPropagation();
     }
   }
