@@ -18,10 +18,10 @@ export default Ember.Component.extend({
   })),
 
   click: function (event) {
-    var closeOnChildClick = this.get('closeOnChildClick');
-    var propagateClicks = this.get('propagateClicks');
-    var $target = Ember.$(event.target);
-    var $c = this.$();
+    let closeOnChildClick = this.get('closeOnChildClick');
+    let propagateClicks = this.get('propagateClicks');
+    let $target = Ember.$(event.target);
+    let $c = this.$();
 
     if ($target !== $c) {
       if ((closeOnChildClick === true || closeOnChildClick === "true") && $target.closest($c).length) {
