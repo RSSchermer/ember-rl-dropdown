@@ -17,7 +17,7 @@ export default Ember.Component.extend({
 
   propagateClicks: true,
 
-  click: function (event) {
+  click(event) {
     let propagateClicks = this.get('propagateClicks');
 
     this.sendAction();

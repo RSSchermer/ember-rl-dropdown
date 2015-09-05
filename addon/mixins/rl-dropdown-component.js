@@ -69,7 +69,7 @@ export default Ember.Mixin.create({
     $document.unbind('keydown.'+ namespace, this.boundEscapeHandler);
   }),
 
-  clickoutHandler: function (event) {
+  clickoutHandler(event) {
     let component = event.data.component;
     let $c = component.$();
     let $target = Ember.$(event.target);
@@ -90,7 +90,7 @@ export default Ember.Mixin.create({
     }
   },
 
-  escapeHandler: function (event) {
+  escapeHandler(event) {
     if (event.keyCode === 27) {
       event.data.component.set('dropdownExpanded', false);
     }

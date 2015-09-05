@@ -17,7 +17,7 @@ export default Ember.Component.extend({
     }
   })),
 
-  click: function (event) {
+  click(event) {
     let closeOnChildClick = this.get('closeOnChildClick');
     let propagateClicks = this.get('propagateClicks');
     let $target = Ember.$(event.target);
