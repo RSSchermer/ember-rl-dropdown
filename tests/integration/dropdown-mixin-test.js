@@ -2,14 +2,14 @@ import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 import Ember from 'ember';
 
-var App;
+let App;
 
-module('Dropdown mixin integration Tests', {
-  beforeEach: function() {
+module('Dropdown mixin integration', {
+  beforeEach() {
     App = startApp();
   },
 
-  afterEach: function() {
+  afterEach() {
     Ember.run(App, 'destroy');
   }
 });
@@ -17,7 +17,7 @@ module('Dropdown mixin integration Tests', {
 test('the dropdown should not be visible initialy', function (assert) {
   visit('/dropdown-mixin-test');
 
-  Ember.run(function () {
+  andThen(() => {
     assert.equal(Ember.$('.user-controls-dropdown').length, 0);
   });
 });
@@ -25,11 +25,9 @@ test('the dropdown should not be visible initialy', function (assert) {
 test('the dropdown should be visible after clicking the checkbox', function (assert) {
   visit('/dropdown-mixin-test');
 
-  Ember.run(function () {
-    click('#dropdownCheckbox');
+  click('#dropdownCheckbox');
 
-    andThen(function () {
-      assert.equal(Ember.$('.user-controls-dropdown').length, 1);
-    });
+  andThen(() => {
+    assert.equal(Ember.$('.user-controls-dropdown').length, 1);
   });
 });

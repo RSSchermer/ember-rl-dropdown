@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RlDropdownContainer from './rl-dropdown-container';
 
 export default Ember.Component.extend({
   classNames: ['rl-dropdown-toggle'],
@@ -11,7 +12,9 @@ export default Ember.Component.extend({
     return this.get('tagName') === 'button' ? 'button' : null;
   }),
 
-  targetObject: Ember.computed.alias('parentView'),
+  dropdownContainer: Ember.computed(function () {
+    return this.nearestOfType(RlDropdownContainer);
+  }),
 
   action: 'toggleDropdown',
 
@@ -20,9 +23,9 @@ export default Ember.Component.extend({
   click(event) {
     let propagateClicks = this.get('propagateClicks');
 
-    this.sendAction();
+    this.get('dropdownContainer').send(this.get('action'));
 
-    if (propagateClicks === false || propagateClicks === "false") {
+    if (propagateClicks === false || propagateClicks === 'false') {
       event.stopPropagation();
     }
   }

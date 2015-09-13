@@ -1,9 +1,14 @@
 import Ember from 'ember';
+import RlDropdownContainer from './rl-dropdown-container';
 
 export default Ember.Component.extend({
   classNames: ['rl-dropdown'],
 
-  isExpanded: Ember.computed.alias('parentView.dropdownExpanded'),
+  dropdownContainer: Ember.computed(function () {
+    return this.nearestOfType(RlDropdownContainer);
+  }),
+
+  isExpanded: Ember.computed.alias('dropdownContainer.dropdownExpanded'),
 
   closeOnChildClick: false,
 
