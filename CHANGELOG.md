@@ -1,5 +1,11 @@
 # Ember-rl-dropdown change log
 
+## 0.6.0
+
+Fixes bug with the `propagateClicks` attribute so now clicks indeed propagate by default.
+
+The `rl-dropdown-container` component now gets a `dropdown-expanded` class when the dropdown is expanded.
+
 ## 0.5.0
 
 Previously click propagation on the `rl-dropdown-toggle` and `rl-dropdown` components was prevented by default. As of
