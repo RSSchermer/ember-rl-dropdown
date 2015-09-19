@@ -155,3 +155,29 @@ test('A checkbox inside the dropdown should properly check and uncheck', functio
   this.$('#checkbox-in-dropdown').click();
   assert.equal(this.get('checkedCheckbox'), false, 'The checkbox unchecks when it is clicked on a second time');
 });
+
+test('The container should pass a boolean block param that reflects whether the dropdown is expanded or not', function (assert) {
+  this.render(hbs`
+    {{#rl-dropdown-container as |dropdownExpanded|}}
+      {{#rl-dropdown-toggle}}
+        {{#if dropdownExpanded}}
+          Close
+        {{else}}
+          Expand
+        {{/if}}
+      {{/rl-dropdown-toggle}}
+
+      {{#rl-dropdown isExpanded=isExpanded}}
+        ...
+      {{/rl-dropdown}}
+    {{/rl-dropdown-container}}
+  `);
+
+  let $dropdownToggle = this.$('.rl-dropdown-toggle');
+
+  this.set('isExpanded', false);
+  assert.equal($dropdownToggle.text().trim(), 'Expand', 'The dropdown toggle text should be "Expand" if `isExpanded` is false');
+
+  this.set('isExpanded', true);
+  assert.equal($dropdownToggle.text().trim(), 'Close', 'The dropdown toggle text should be "Close" if `isExpanded` is true');
+});

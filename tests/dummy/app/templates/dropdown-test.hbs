@@ -1,6 +1,12 @@
-{{#rl-dropdown-container}}
-  {{#rl-dropdown-toggle}}Toggle <span class="caret"></span>{{/rl-dropdown-toggle}}
-
+{{#rl-dropdown-container as |isExpanded|}}
+  {{#rl-dropdown-toggle}}
+    {{#if isExpanded}}
+      Close <span class="caret"></span>
+    {{else}}
+      Expand <span class="caret"></span>
+    {{/if}}
+  {{/rl-dropdown-toggle}}
+  
   {{#rl-dropdown}}
     <li><a href="#">Link</a></li>
   {{/rl-dropdown}}

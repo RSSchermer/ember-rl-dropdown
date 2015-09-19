@@ -45,6 +45,26 @@ Set it to `true` if any child element should close the dropdown.
 `propagateClicks` may be set to `false` on the `rl-dropdown-toggle` component and/or the `rl-dropdown` component if
 click events should not propagate up through the DOM from either or both of these components.
 
+The `rl-dropdown-container` component also passes a boolean block param indicating whether or not the dropdown is
+expanded, which can be used to e.g. customize the toggle button text based on whether the dropdown is expanded or
+closed:
+
+```hbs
+{{#rl-dropdown-container as |isExpanded|}}
+  {{#rl-dropdown-toggle}}
+    {{#if isExpanded}}
+      Close
+    {{else}}
+      Expand
+    {{/if}}
+  {{/rl-dropdown-toggle}}
+
+  {{#rl-dropdown}}
+    ...
+  {{/rl-dropdown}}
+{{/rl-dropdown-container}}
+```
+
 ## Mixin
 
 When integrating dropdown functionality in your own components, you may prefer to use the mixin instead of using the
