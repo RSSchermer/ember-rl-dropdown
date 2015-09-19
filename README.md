@@ -50,9 +50,9 @@ expanded, which can be used to e.g. customize the toggle button text based on wh
 closed:
 
 ```hbs
-{{#rl-dropdown-container as |isExpanded|}}
+{{#rl-dropdown-container as |dropdownExpanded|}}
   {{#rl-dropdown-toggle}}
-    {{#if isExpanded}}
+    {{#if dropdownExpanded}}
       Close
     {{else}}
       Expand

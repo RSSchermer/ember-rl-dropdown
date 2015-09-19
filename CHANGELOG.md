@@ -1,5 +1,26 @@
 # Ember-rl-dropdown change log
 
+## 0.7.0
+
+A block param was added to the `rl-dropdown-container` component indicating whether or not the dropdown is expanded,
+which can be used to e.g. customize the toggle button text based on whether the dropdown is expanded or closed:
+
+```hbs
+{{#rl-dropdown-container as |dropdownExpanded|}}
+  {{#rl-dropdown-toggle}}
+    {{#if dropdownExpanded}}
+      Close
+    {{else}}
+      Expand
+    {{/if}}
+  {{/rl-dropdown-toggle}}
+
+  {{#rl-dropdown}}
+    ...
+  {{/rl-dropdown}}
+{{/rl-dropdown-container}}
+```
+
 ## 0.6.0
 
 Fixes bug with the `propagateClicks` attribute so now clicks indeed propagate by default.
