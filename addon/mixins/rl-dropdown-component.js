@@ -18,12 +18,54 @@ export default Ember.Mixin.create({
 
   closeOnEscape: true,
 
+   /**
+   * define if other dropdowns will be closed when this dropdown opens up
+   */
+  closeOthersOnOpen: true,
+
+  dropdownService: Ember.inject.service('rl-dropdown-service'),
+
+  /**
+   * register this component at the dropdown-service
+   */
+  listen: Ember.on('init', function() {
+    this.get('dropdownService').on('dropdown-action', this, 'callDropdownAction');
+  }),
+
+  /**
+   * unregister this component at the dropdown-service when the component will be destroyed
+   */
+  cleanup: Ember.on('willDestroyElement', function() {
+    this.get('dropdownService').off('dropdown-action', this, 'callDropdownAction');
+  }),
+
+  /**
+   * calling various actions of the component when receiving a service event
+   * @param action {Object} the event object that can hold any kind of actions
+   */
+  callDropdownAction: function(event) {
+
+    let action = (event && event.action) ? event.action : null;
+
+    switch (action) {
+      case 'closeDropdown':
+        this.send('closeDropdown');
+        break;
+    }
+  },
+
   actions: {
     toggleDropdown: function () {
+      if (!this.get('dropdownExpanded') && this.get('closeOthersOnOpen')) {
+        this.get('dropdownService').trigger('dropdown-action', {action: 'closeDropdown'});
+      }
       this.toggleProperty('dropdownExpanded');
     },
 
     openDropdown: function () {
+      if (this.get('closeOthersOnOpen')) {
+        this.get('dropdownService').trigger('dropdown-action', {action: 'closeDropdown'});
+      }
       this.set('dropdownExpanded', true);
     },
 
