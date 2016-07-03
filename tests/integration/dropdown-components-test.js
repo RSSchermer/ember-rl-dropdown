@@ -99,10 +99,13 @@ test('The dropdown closes when clicking outside', function (assert) {
   assert.equal($dropdown.css('display'), 'block', 'The dropdown is displayed initially');
 
   // Click outside with a slight delay, because the event listener for outside clicks isn't added immediately
+  let done = assert.async();
+
   Ember.run.later(() => {
     this.$().parent().find('#some-other-element').click();
 
     assert.equal($dropdown.css('display'), 'none', 'The dropdown is not displayed after clicking outside');
+    done();
   }, 2);
 });
 
