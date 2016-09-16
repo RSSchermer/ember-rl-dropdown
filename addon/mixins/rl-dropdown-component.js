@@ -21,14 +21,17 @@ export default Ember.Mixin.create({
   actions: {
     toggleDropdown: function () {
       this.toggleProperty('dropdownExpanded');
+      this.sendAction('onDropdownChangeState', this.get('dropdownExpanded'));
     },
 
     openDropdown: function () {
       this.set('dropdownExpanded', true);
+      this.sendAction('onDropdownChangeState', true);
     },
 
     closeDropdown: function () {
       this.set('dropdownExpanded', false);
+      this.sendAction('onDropdownChangeState', false);
     }
   },
 
@@ -83,16 +86,16 @@ export default Ember.Mixin.create({
      * closing the dropdown when it should not have closed.
      */
     if(component.get('dropdownExpanded') && $target.closest('html').length &&
-      !($target.closest($c.find(component.get('dropdownToggleSelector'))).length ||
+        !($target.closest($c.find(component.get('dropdownToggleSelector'))).length ||
         $target.closest($c.find(component.get('dropdownSelector'))).length)
     ) {
-      component.set('dropdownExpanded', false);
+      component.send('closeDropdown');
     }
   },
 
   escapeHandler(event) {
     if (event.keyCode === 27) {
-      event.data.component.set('dropdownExpanded', false);
+      event.data.component.send('closeDropdown');
     }
   }
 });
