@@ -86,8 +86,8 @@ export default Ember.Mixin.create({
      * closing the dropdown when it should not have closed.
      */
     if(component.get('dropdownExpanded') && $target.closest('html').length &&
-        !($target.closest($c.find(component.get('dropdownToggleSelector'))).length ||
-        $target.closest($c.find(component.get('dropdownSelector'))).length)
+      !($target.closest($c.find(component.get('dropdownToggleSelector'))).length ||
+      $target.closest($c.find(component.get('dropdownSelector'))).length)
     ) {
       component.send('closeDropdown');
     }
