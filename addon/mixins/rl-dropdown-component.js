@@ -8,6 +8,9 @@ export default Ember.Mixin.create({
     this.set('boundEscapeHandler', Ember.run.bind(this, this.escapeHandler));
   },
 
+  onOpen: Ember.K,
+  onClose: Ember.K,
+
   dropdownExpanded: false,
 
   dropdownToggleSelector: '.rl-dropdown-toggle',
@@ -21,17 +24,22 @@ export default Ember.Mixin.create({
   actions: {
     toggleDropdown: function () {
       this.toggleProperty('dropdownExpanded');
-      this.sendAction('onDropdownChangeState', this.get('dropdownExpanded'));
+
+      if (this.get('dropdownExpanded')) {
+        this.get('onOpen')();
+      } else {
+        this.get('onClose')();
+      }
     },
 
     openDropdown: function () {
       this.set('dropdownExpanded', true);
-      this.sendAction('onDropdownChangeState', true);
+      this.get('onOpen')();
     },
 
     closeDropdown: function () {
       this.set('dropdownExpanded', false);
-      this.sendAction('onDropdownChangeState', false);
+      this.get('onClose')();
     }
   },
 
