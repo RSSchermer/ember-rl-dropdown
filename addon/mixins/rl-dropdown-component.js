@@ -8,6 +8,9 @@ export default Ember.Mixin.create({
     this.set('boundEscapeHandler', Ember.run.bind(this, this.escapeHandler));
   },
 
+  onOpen: Ember.K,
+  onClose: Ember.K,
+
   dropdownExpanded: false,
 
   dropdownToggleSelector: '.rl-dropdown-toggle',
@@ -21,14 +24,22 @@ export default Ember.Mixin.create({
   actions: {
     toggleDropdown: function () {
       this.toggleProperty('dropdownExpanded');
+
+      if (this.get('dropdownExpanded')) {
+        this.get('onOpen')();
+      } else {
+        this.get('onClose')();
+      }
     },
 
     openDropdown: function () {
       this.set('dropdownExpanded', true);
+      this.get('onOpen')();
     },
 
     closeDropdown: function () {
       this.set('dropdownExpanded', false);
+      this.get('onClose')();
     }
   },
 
@@ -84,15 +95,15 @@ export default Ember.Mixin.create({
      */
     if(component.get('dropdownExpanded') && $target.closest('html').length &&
       !($target.closest($c.find(component.get('dropdownToggleSelector'))).length ||
-        $target.closest($c.find(component.get('dropdownSelector'))).length)
+      $target.closest($c.find(component.get('dropdownSelector'))).length)
     ) {
-      component.set('dropdownExpanded', false);
+      component.send('closeDropdown');
     }
   },
 
   escapeHandler(event) {
     if (event.keyCode === 27) {
-      event.data.component.set('dropdownExpanded', false);
+      event.data.component.send('closeDropdown');
     }
   }
 });
