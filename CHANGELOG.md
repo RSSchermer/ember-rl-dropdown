@@ -1,5 +1,19 @@
 # Ember-rl-dropdown change log
 
+## 0.8.0
+
+Thanks to @hakubo, it is now possible to bind actions to the `onOpen` and `onClose` attributes on the
+`rl-dropdown-container` component:
+
+```hbs
+{{#rl-dropdown-container onOpen=(action "myOnOpenHandler") onClose=(action "myOnCloseHandler")}}
+  ...
+{{/rl-dropdown-container}}
+```
+
+The `onOpen` action will be called when the dropdown is opened; the `onClose` action will be called when the dropdown
+is closed.  
+
 ## 0.7.0
 
 A block param was added to the `rl-dropdown-container` component indicating whether or not the dropdown is expanded,
