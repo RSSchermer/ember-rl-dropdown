@@ -46,6 +46,7 @@ export default Ember.Mixin.create({
   manageClosingEvents: Ember.on('didInsertElement', Ember.observer('dropdownExpanded', function () {
     let namespace = this.get('closingEventNamespace');
     let clickEventName = 'click.'+ namespace;
+    let focusEventName = 'focusin.'+ namespace;
     let touchEventName = 'touchstart.'+ namespace;
     let escapeEventName = 'keydown.'+ namespace;
     let component = this;
@@ -58,6 +59,7 @@ export default Ember.Mixin.create({
        * having the handler close the dropdown immediately. */
       Ember.run.later(() => {
         $document.bind(clickEventName, {component: component}, component.boundClickoutHandler);
+        $document.bind(focusEventName, {component: component}, component.boundClickoutHandler);
         $document.bind(touchEventName, {component: component}, component.boundClickoutHandler);
       }, 1);
 
@@ -66,6 +68,7 @@ export default Ember.Mixin.create({
       }
     } else {
       $document.unbind(clickEventName, component.boundClickoutHandler);
+      $document.unbind(focusEventName, component.boundClickoutHandler);
       $document.unbind(touchEventName, component.boundClickoutHandler);
       $document.unbind(escapeEventName, component.boundEscapeHandler);
     }
