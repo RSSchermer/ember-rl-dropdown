@@ -79,6 +79,7 @@ export default Ember.Mixin.create({
     let $document = Ember.$(document);
 
     $document.unbind('click.'+ namespace, this.boundClickoutHandler);
+    $document.unbind('focusin.'+ namespace, this.boundClickoutHandler);
     $document.unbind('touchstart.'+ namespace, this.boundClickoutHandler);
     $document.unbind('keydown.'+ namespace, this.boundEscapeHandler);
   }),
