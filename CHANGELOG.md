@@ -1,5 +1,10 @@
 # Ember-rl-dropdown change log
 
+## 0.9.0
+
+Dropdown now closes when elements outside the dropdown receive focus. Fixes complicated bug in Firefox (see Pull Request
+#18, thanks @tomasznapieralski!). 
+
 ## 0.8.0
 
 Thanks to @hakubo, it is now possible to bind actions to the `onOpen` and `onClose` attributes on the
