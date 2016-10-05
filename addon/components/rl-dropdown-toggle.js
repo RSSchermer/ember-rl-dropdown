@@ -6,10 +6,14 @@ export default Ember.Component.extend({
 
   tagName: 'button',
 
-  attributeBindings: ['type'],
+  attributeBindings: ['type', 'role'],
 
   type: Ember.computed('tagName', function () {
     return this.get('tagName') === 'button' ? 'button' : null;
+  }),
+  
+  role: Ember.computed('tagName', function () {
+    return this.get('tagName') === 'a' ? 'button' : null;
   }),
 
   dropdownContainer: Ember.computed(function () {
