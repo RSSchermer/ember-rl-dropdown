@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     if ($target !== $c) {
       if ((closeOnChildClick === true || closeOnChildClick === "true") && $target.closest($c).length) {
         this.set('isExpanded', false);
-      } else if (closeOnChildClick && $target.closest($c.find(closeOnChildClick)).length) {
+      } else if (closeOnChildClick && $target.closest(closeOnChildClick, $c).length) {
         this.set('isExpanded', false);
       }
     }
