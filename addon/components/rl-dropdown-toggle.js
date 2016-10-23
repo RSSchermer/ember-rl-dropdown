@@ -6,12 +6,12 @@ export default Ember.Component.extend({
 
   tagName: 'button',
 
-  attributeBindings: ['type', 'role'],
+  attributeBindings: ['type', 'role', 'disabled'],
 
   type: Ember.computed('tagName', function () {
     return this.get('tagName') === 'button' ? 'button' : null;
   }),
-  
+
   role: Ember.computed('tagName', function () {
     return this.get('tagName') === 'a' ? 'button' : null;
   }),
@@ -24,13 +24,17 @@ export default Ember.Component.extend({
 
   propagateClicks: true,
 
+  disabled: false,
+
   click(event) {
-    let propagateClicks = this.get('propagateClicks');
+    if (!this.get('disabled')) {
+      let propagateClicks = this.get('propagateClicks');
 
-    this.get('dropdownContainer').send(this.get('action'));
+      this.get('dropdownContainer').send(this.get('action'));
 
-    if (propagateClicks === false || propagateClicks === 'false') {
-      event.stopPropagation();
+      if (propagateClicks === false || propagateClicks === 'false') {
+        event.stopPropagation();
+      }
     }
   }
 });

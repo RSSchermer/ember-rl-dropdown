@@ -184,3 +184,23 @@ test('The container should pass a boolean block param that reflects whether the 
   this.set('isExpanded', true);
   assert.equal($dropdownToggle.text().trim(), 'Close', 'The dropdown toggle text should be "Close" if `isExpanded` is true');
 });
+
+test('The dropdown does not open when when clicking a toggle button for which disabled is true', function (assert) {
+  this.render(hbs`
+    {{#rl-dropdown-container}}
+      {{#rl-dropdown-toggle disabled=true}}Toggle{{/rl-dropdown-toggle}}
+
+      {{#rl-dropdown}}
+        ...
+      {{/rl-dropdown}}
+    {{/rl-dropdown-container}}
+  `);
+
+  let $dropdown = this.$('.rl-dropdown');
+  let $toggleButton = this.$('.rl-dropdown-toggle');
+
+  assert.equal($dropdown.css('display'), 'none', 'The dropdown is not displayed initially');
+
+  $toggleButton.click();
+  assert.equal($dropdown.css('display'), 'none', 'The dropdown is not displayed after clicking the toggle button');
+});
