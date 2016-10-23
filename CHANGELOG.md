@@ -1,9 +1,25 @@
 # Ember-rl-dropdown change log
 
+## 0.10.0
+
+Adds `disabled` attribute to `rl-dropdown-toggle`. `disabled` may be set to `true` to disable the toggle button:
+
+```hbs
+{{#rl-dropdown-container}}
+  {{#rl-dropdown-toggle disabled=true}}
+    Toggle
+  {{/rl-dropdown-toggle}}
+
+  {{#rl-dropdown}}
+    ...
+  {{/rl-dropdown}}
+{{/rl-dropdown-container}}
+```
+
 ## 0.9.0
 
 Dropdown now closes when elements outside the dropdown receive focus. Fixes complicated bug in Firefox (see Pull Request
-#18, thanks @tomasznapieralski!). 
+#18, thanks @tomasznapieralski!).
 
 ## 0.8.0
 

@@ -1,6 +1,6 @@
 {
   "name": "ember-rl-dropdown",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Dropdown component and mixin for Ember.js",
   "directories": {
     "doc": "doc",
