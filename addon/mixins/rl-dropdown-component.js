@@ -8,8 +8,8 @@ export default Ember.Mixin.create({
     this.set('boundEscapeHandler', Ember.run.bind(this, this.escapeHandler));
   },
 
-  onOpen: Ember.K,
-  onClose: Ember.K,
+  onOpen() {},
+  onClose() {},
 
   dropdownExpanded: false,
 
