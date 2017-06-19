@@ -8,7 +8,10 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/rsschermer/ember-rl-dropdown",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gutschik/ember-rl-dropdown.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -51,7 +54,6 @@
     "demoURL": "http://rsschermer.github.io/ember-rl-dropdown/"
   },
   "bugs": {
-    "url": "https://github.com/rsschermer/ember-rl-dropdown/issues"
+    "url": "https://github.com/gutschik/ember-rl-dropdown/issues"
   },
-  "homepage": "https://github.com/rsschermer/ember-rl-dropdown"
 }
