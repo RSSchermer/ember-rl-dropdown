@@ -1,5 +1,8 @@
 # Ember-rl-dropdown
 
+THIS IS A LEGACY ADDON THAT'S NO LONGER ACTIVELY MAINTAINED. IF YOU'RE LOOKING FOR A MORE UP TO DATE ALTERNATIVE,
+I'D RECOMMEND http://ember-basic-dropdown.com/
+
 Simple dropdown component and mixin for Ember. While it is very straightforward to create toggle functionality in
 Ember with the if-helper, this dropdown will also close on click-out or when pressing the Escape key.
 
